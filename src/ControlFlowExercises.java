@@ -2,12 +2,12 @@ import java.util.Scanner;
 
 public class ControlFlowExercises {
     public static void main(String[] args){
-        int num = 5;
+        int i = 5;
         Scanner in  = new Scanner(System.in);
 
-        while(num <= 15){
-            System.out.print(num + " ");
-            num++;
+        while(i <= 15){
+            System.out.print(i + " ");
+            i++;
         }
 
         System.out.print("\n");
@@ -39,7 +39,7 @@ public class ControlFlowExercises {
             System.out.println(num3);
             num3 = num3 * num3;
 
-        }while(num3 < 4294967296L);
+        }while(num3 < 1000000L);
 
         System.out.println("---------------------");
 
@@ -56,7 +56,7 @@ public class ControlFlowExercises {
 
         System.out.println("---------------------");
 
-        for(long x = 2; x < 4294967296L; x *= x){
+        for(long x = 2L; x < 1000000L; x *= x){
             System.out.println(x);
         }
 
