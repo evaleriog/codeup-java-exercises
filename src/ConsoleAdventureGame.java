@@ -13,22 +13,8 @@ public class ConsoleAdventureGame {
         int playerHealth = 100;
 
         System.out.printf("Welcome %s, Let's start the adventure!%n", player);
-        System.out.print(""
-                + "\n" +
-                "                  /~~\\    \n" +
-                "               W ( %% )   \n" +
-                "                \\ \\--/    \n" +
-                "   __O           \\ II         ^  ^  ^   ^      ___I_      ^  ^   ^  ^  ^   ^  ^\n" +
-                "  / /\\_,           <>  \\    /|\\/|\\/|\\ /|\\    /\\-_--\\    /|\\/|\\ /|\\/|\\/|\\ /|\\/|\\\n" +
-                "___/\\             /  \\      /|\\/|\\/|\\ /|\\   /  \\_-__\\   /|\\/|\\ /|\\/|\\/|\\ /|\\/|\\\n" +
-                "     /_           /    \\     /|\\/|\\/|\\ /|\\   |[]| [] |   /|\\/|\\ /|\\/|\\/|\\ /|\\/|\\\n\n" +
-                "" + "");
 
-        System.out.println("");
-        System.out.println("Looks like you encounter a demon...");
-        System.out.println("Get ready to fight it.....");
-        System.out.println("");
-
+        displayDemon();
 
         String enemy = "Demon";
         int enemyHealth = 10;
@@ -92,6 +78,8 @@ public class ConsoleAdventureGame {
         path = path.toLowerCase();
 
         if(path.equalsIgnoreCase("forest")){
+            displayDemon();
+
             do{
                 if(playerHealth <= 0){
                     break;
@@ -252,6 +240,24 @@ public class ConsoleAdventureGame {
         int enemyAttack = (int)(Math.random() * range) + min;
 
         return enemyAttack;
+    }
+
+    public static void displayDemon(){
+        System.out.print(""
+                + "\n" +
+                "                  /~~\\    \n" +
+                "               W ( %% )   \n" +
+                "                \\ \\--/    \n" +
+                "   __O           \\ II         ^  ^  ^   ^      ___I_      ^  ^   ^  ^  ^   ^  ^\n" +
+                "  / /\\_,           <>  \\    /|\\/|\\/|\\ /|\\    /\\-_--\\    /|\\/|\\ /|\\/|\\/|\\ /|\\/|\\\n" +
+                "___/\\             /  \\      /|\\/|\\/|\\ /|\\   /  \\_-__\\   /|\\/|\\ /|\\/|\\/|\\ /|\\/|\\\n" +
+                "     /_           /    \\     /|\\/|\\/|\\ /|\\   |[]| [] |   /|\\/|\\ /|\\/|\\/|\\ /|\\/|\\\n\n" +
+                "" + "");
+
+        System.out.println("");
+        System.out.println("Looks like you encounter a demon...");
+        System.out.println("Get ready to fight it.....");
+        System.out.println("");
     }
 
 }
