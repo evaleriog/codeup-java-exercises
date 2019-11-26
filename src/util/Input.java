@@ -11,8 +11,8 @@ public class Input {
         return scanner.nextLine();
     }
 
-    boolean yesNo(){
-        System.out.println("Enter yes or no: ");
+    public boolean yesNo(){
+        //System.out.println("Enter yes or no: ");
         String response = scanner.next();
         response.trim();
         response.toLowerCase();
@@ -50,8 +50,8 @@ public class Input {
         return number;
     }
 
-    double getDouble(){
-        System.out.println("Please enter a double: ");
+    public double getDouble(){
+        //System.out.println("Please enter a double: ");
 
         return scanner.nextDouble();
     }
