@@ -5,8 +5,7 @@ public class ServerNameGenerator {
     public static String[] nouns = {"van", "computer", "mouse", "keyboard", "cup", "can", "fan", "map", "toe", "book"};
 
     public static String CreatorName(String[] arr){
-        int range = 9 - 0 + 1;
-        int randNum = (int)(Math.random() * range) + 0;
+        int randNum = (int)(Math.random() * 10);
 
         return arr[randNum];
     }
