@@ -5,8 +5,8 @@ public class Movie {
     private String category;
 
     public Movie(String name, String category){
-        this.name = name;
-        this.category = category;
+        setName(name);
+        setCategory(category);
     }
 
     public String getName(){

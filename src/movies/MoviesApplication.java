@@ -33,14 +33,19 @@ public class MoviesApplication {
                     displayMovies(allMovies, "scifi");
                     break;
                 case 6:
+                    displayMovies(allMovies, "musical");
+                    break;
+                case 7:
+                    sc.nextLine();
                     System.out.println("Enter the movie name: ");
-                    String movieName = sc.next();
-                    movieName.trim();
+                    String movieName = sc.nextLine();
+                    movieName = movieName.trim();
                     System.out.println("Enter the movie category: ");
-                    String movieCategory = sc.next();
-                    movieCategory.trim();
+                    String movieCategory = sc.nextLine();
+                    movieCategory = movieCategory.trim();
                     allMovies = addMovie(allMovies, movieName, movieCategory);
                     break;
+
                 default:
                     System.out.println("Not a choice...");
                     break;
@@ -48,13 +53,16 @@ public class MoviesApplication {
 
         }while(response != 0);
     }
-    public static void displayMovies(Movie[] arr){
+
+    private static void displayMovies(Movie[] arr){
+        System.out.println("\nHere are all the movies in the List\n");
         for(Movie movie: arr){
             System.out.printf("%s -- %s%n", movie.getName(), movie.getCategory());
         }
     }
-    public static void displayMovies(Movie[] arr, String category){
 
+    private static void displayMovies(Movie[] arr, String category){
+        System.out.printf("%nHere are all the movies in %s category: %n%n", category);
         for(Movie movie: arr){
             if(movie.getCategory().equalsIgnoreCase(category)){
                 System.out.printf("%s -- %s%n", movie.getName(), movie.getCategory());
@@ -63,19 +71,14 @@ public class MoviesApplication {
 
     }
 
-    public static Movie[] addMovie(Movie[] arr, String name, String category){
-        Movie[] bucket = new Movie[arr.length + 1];
-
-        for(int x=0; x < arr.length; x++){
-            bucket[x] = arr[x];
-        }
-
+    private static Movie[] addMovie(Movie[] arr, String name, String category){
+        Movie[] bucket = Arrays.copyOf(arr, arr.length + 1);
         bucket[arr.length] = new Movie(name, category);
 
         return bucket;
     }
 
-    public static void displayMenu(){
+    private static void displayMenu(){
         System.out.println("");
         System.out.println("What would you like to do?");
         System.out.println("0 - exit");
@@ -84,7 +87,8 @@ public class MoviesApplication {
         System.out.println("3 - view movies in the drama category");
         System.out.println("4 - view movies in the horror category");
         System.out.println("5 - view movies in the scifi category");
-        System.out.println("6 - Add a new movie to the list");
+        System.out.println("6 - view movies in the musical category");
+        System.out.println("7 - Add a new movie to the list");
         System.out.println("Enter your choice: ");
     }
 }

@@ -5,6 +5,7 @@ public class ArrayExercises {
         int[] numbers = {1,2,3,4,5};
 
         System.out.println(Arrays.toString(numbers));
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
         Person[] persons = new Person[3];
         persons[0] = new Person("Eduardo");
@@ -19,6 +20,8 @@ public class ArrayExercises {
 
         persons =  addPerson(test, persons);
 
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
         for(Person person : persons){
             System.out.println(person.getName());
         }
@@ -26,11 +29,7 @@ public class ArrayExercises {
     }
 
     public static Person[] addPerson(Person obj, Person[] arr){
-        Person[] bucket = new Person[arr.length + 1];
-
-        for(int x=0; x < arr.length; x++){
-            bucket[x] = arr[x];
-        }
+        Person[] bucket = Arrays.copyOf(arr, arr.length + 1);
         bucket[arr.length] = obj;
 
         return bucket;
