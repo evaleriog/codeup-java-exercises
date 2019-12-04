@@ -22,10 +22,12 @@ public class Square extends Quadrilateral {
     }
 
     public void setLength(double length){
-
+        this.length = length;
+        this.width = length;
     }
 
     public void setWidth(double width){
-
+        this.length = width;
+        this.width = width;
     }
 }
