@@ -10,6 +10,8 @@ public class Square extends Rectangle {
 
     public int getPerimeter(){
         return 4 * this.side;
+        //return 4 * super.length
+        //return 4 * super.width
     }
 
     public int getArea(){
