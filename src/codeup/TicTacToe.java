@@ -3,7 +3,7 @@ import java.util.Scanner;
 import java.lang.Math;
 
 public class TicTacToe {
-    public static Scanner sc = new Scanner(System.in);
+    private static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args){
         boolean response;
@@ -36,10 +36,12 @@ public class TicTacToe {
 
     }
 
-    public static void match(String[][] arr){
+    //method that run the match between two players
+    private static void match(String[][] arr){
         String checkX = "-x-";
         String checkO = "-o-";
         boolean isOver;
+        //random number to check which player starts the game
         int turn = (int)(Math.random() * ((2 - 1) + 1)) + 1;
 
         System.out.println("Please enter the name for player 1:");
@@ -55,17 +57,21 @@ public class TicTacToe {
         System.out.printf("and of course that means... %s....you will be the o...%n", playerTwo);
 
         do{
+            //player one plays it turns when turn is equal to one
             if(turn == 1){
                 System.out.printf("%n%s enter your move....", playerOne);
                 checkMove(arr,checkX);
                 displayMoves(arr);
                 isOver = checkWin(arr, checkX, playerOne);
+                //changes turn to 2 for player 2 to make a move
                 turn = 2;
             }else{
+                //turns is equal to two for player 2 to make a move
                 System.out.printf("%n%s enter your move....", playerTwo);
                 checkMove(arr,checkO);
                 displayMoves(arr);
                 isOver = checkWin(arr, checkO, playerTwo);
+                //changes turn to 1 for player 1 to make a move
                 turn = 1;
             }
 
@@ -73,13 +79,15 @@ public class TicTacToe {
 
     }
 
-    public static String[][] checkMove(String[][] arr, String mark){
-
+    //method that checks if a move made by a player is valid
+    private static void checkMove(String[][] arr, String mark){
+        //array of possible moves allowed based on the matrix
         String[] possibleMoves = {"1A", "1B", "1C", "2A", "2B", "2C", "3A", "3B", "3C"};
         String move = sc.nextLine();
         move = move.trim().toUpperCase();
         boolean possible = false;
 
+        //compare player selected move into the array of possible moves
         for(String oneMove : possibleMoves){
             if(move.equals(oneMove)){
                 possible = true;
@@ -87,17 +95,19 @@ public class TicTacToe {
             }
         }
 
+        //checks if the move is allowed and no other player has his mark on the same spot
         if(possible && checkSpace(move,arr)){
             changeMove(move, arr, mark);
         }else{
+            //recurse the method if invalid move
             System.out.println("Not a correct move...Try again...");
             checkMove(arr,mark);
         }
 
-        return arr;
     }
 
-    public static String[][] changeMove(String move, String[][] arr, String mark){
+    //method that changes a spot in the array with the player mark if the move is valid
+    private static void changeMove(String move, String[][] arr, String mark){
         switch (move){
             case "1A":
                 arr[0][0] = mark;
@@ -128,10 +138,10 @@ public class TicTacToe {
                 break;
         }
 
-        return arr;
     }
 
-    public static boolean checkSpace(String move, String[][] arr){
+    //method that checks if no other player has his mark in a spot
+    private static boolean checkSpace(String move, String[][] arr){
         boolean canYou = true;
 
         switch (move){
@@ -185,62 +195,66 @@ public class TicTacToe {
         return canYou;
     }
 
-    public static boolean checkWin(String[][] arr, String mark, String player){
+    //method that checks if a player win the game after a move.
+    private static boolean checkWin(String[][] arr, String mark, String player){
         boolean win = false;
         String winMark;
 
+        //special mark for when a player wins the game
         if(mark.equals("-x-")){
             winMark = "*x*";
         }else {
             winMark = "*o*";
         }
 
-        if(arr[0][0] == mark && arr[0][1] == mark && arr[0][2] == mark){
+        if(arr[0][0].equals(mark) && arr[0][1].equals(mark) && arr[0][2].equals(mark)){
             win = true;
             arr[0][0] = winMark;
             arr[0][1] = winMark;
             arr[0][2] = winMark;
-        }else if(arr[1][0] == mark && arr[1][1] == mark && arr[1][2] == mark){
+        }else if(arr[1][0].equals(mark) && arr[1][1].equals(mark) && arr[1][2].equals(mark)){
             win = true;
             arr[1][0] = winMark;
             arr[1][1] = winMark;
             arr[1][2] = winMark;
-        }else if(arr[2][0] == mark && arr[2][1] == mark && arr[2][2] == mark) {
+        }else if(arr[2][0].equals(mark) && arr[2][1].equals(mark) && arr[2][2].equals(mark)) {
             win = true;
             arr[2][0] = winMark;
             arr[2][1] = winMark;
             arr[2][2] = winMark;
-        }else if(arr[0][0] == mark && arr[1][0] == mark && arr[2][0] == mark){
+        }else if(arr[0][0].equals(mark) && arr[1][0].equals(mark) && arr[2][0].equals(mark)){
             win = true;
             arr[0][0] = winMark;
             arr[1][0] = winMark;
             arr[2][0] = winMark;
-        }else if(arr[0][1] == mark && arr[1][1] == mark && arr[2][1] == mark) {
+        }else if(arr[0][1].equals(mark) && arr[1][1].equals(mark) && arr[2][1].equals(mark)) {
             win = true;
             arr[0][1] = winMark;
             arr[1][1] = winMark;
             arr[2][1] = winMark;
-        }else if(arr[0][2] == mark && arr[1][2] == mark && arr[2][2] == mark){
+        }else if(arr[0][2].equals(mark) && arr[1][2].equals(mark) && arr[2][2].equals(mark)){
             win = true;
             arr[0][2] = winMark;
             arr[1][2] = winMark;
             arr[2][2] = winMark;
-        }else if(arr[0][0] == mark && arr[1][1] == mark && arr[2][2] == mark){
+        }else if(arr[0][0].equals(mark) && arr[1][1].equals(mark) && arr[2][2].equals(mark)){
             win = true;
             arr[0][0] = winMark;
             arr[1][1] = winMark;
             arr[2][2] = winMark;
-        }else if(arr[0][2] == mark && arr[1][1] == mark && arr[2][0] == mark){
+        }else if(arr[0][2].equals(mark) && arr[1][1].equals(mark) && arr[2][0].equals(mark)){
             win = true;
             arr[0][2] = winMark;
             arr[1][1] = winMark;
             arr[2][0] = winMark;
         }
 
-        if(win == true){
+        if(win){
+            //displays array with winning marks
             displayMoves(arr);
             System.out.printf("%nCongratulations %s, you won the match.......%n", player);
 
+            //sets array back to blank for another game
             for(int x = 0; x < arr.length; x++){
                 for(int y =0; y < arr.length; y++){
                     arr[x][y] = "---";
@@ -251,7 +265,8 @@ public class TicTacToe {
         return win;
     }
 
-    public static void displayMoves(String[][] arr){
+    //function that displays the array with current moves.
+    private static void displayMoves(String[][] arr){
         System.out.println("   A   B   C");
         for(int x = 0; x < arr.length; x++){
             System.out.printf("%d ", x+1);
