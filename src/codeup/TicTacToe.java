@@ -4,15 +4,15 @@ import java.lang.Math;
 
 public class TicTacToe {
     private static Scanner sc = new Scanner(System.in);
+    private static String[][] matrix = {
+            {"---", "---", "---"},
+            {"---", "---", "---"},
+            {"---", "---", "---"}
+    };
 
     public static void main(String[] args){
         boolean response;
 
-        String[][] matrix = {
-                {"---", "---", "---"},
-                {"---", "---", "---"},
-                {"---", "---", "---"}
-        };
         System.out.println("Welcome to Tic Tac Toe");
 
         do{
@@ -23,7 +23,7 @@ public class TicTacToe {
             String another = sc.nextLine();
             another = another.trim();
 
-            if(another.equalsIgnoreCase("y")){
+            if(another.equalsIgnoreCase("y") || another.equalsIgnoreCase("yes")){
                 response = true;
                 System.out.println("Perfect...let's meet our new players then.....");
             }else {
@@ -32,9 +32,8 @@ public class TicTacToe {
             }
 
         }while(response);
-
-
     }
+
 
     //method that run the match between two players
     private static void match(String[][] arr){
@@ -198,6 +197,8 @@ public class TicTacToe {
     //method that checks if a player win the game after a move.
     private static boolean checkWin(String[][] arr, String mark, String player){
         boolean win = false;
+        int counter = 0;
+
         String winMark;
 
         //special mark for when a player wins the game
@@ -249,10 +250,30 @@ public class TicTacToe {
             arr[2][0] = winMark;
         }
 
+        //checks if all spots are filled
+        for(int x = 0; x < arr.length; x++){
+            for(int y =0; y < arr.length; y++){
+                if(arr[x][y].equals("-x-") || arr[x][y].equals("-o-")){
+                    counter++;
+                }
+            }
+
+        }
+
+        //if all spots are full return win as positive to end the match
+        if(counter == 9){
+            win = true;
+        }
+
         if(win){
             //displays array with winning marks
             displayMoves(arr);
-            System.out.printf("%nCongratulations %s, you won the match.......%n", player);
+
+            if(counter != 9){
+                System.out.printf("%nCongratulations %s, you won the match.......%n", player);
+            }else{
+                System.out.println("\nLooks like we have a tie match......");
+            }
 
             //sets array back to blank for another game
             for(int x = 0; x < arr.length; x++){
@@ -268,6 +289,7 @@ public class TicTacToe {
     //function that displays the array with current moves.
     private static void displayMoves(String[][] arr){
         System.out.println("   A   B   C");
+
         for(int x = 0; x < arr.length; x++){
             System.out.printf("%d ", x+1);
             for(int y =0; y < arr.length; y++){
